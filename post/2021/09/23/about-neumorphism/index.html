@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="google" content="notranslate" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keyword" content="冷石, 前端, 面试，Web, Js, CSS, Node.js, Frontend, Flutter, Docker, Dart, Mysql, Egg.js" />
+  <meta name="description" content="孑然一身，傲立于世" />
+  <title>冷石的博客</title>
+  <base href="/" />
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="shortcut icon" href="/icons/icon-72x72.png" />
+  <link
+    rel="apple-touch-icon"
+    href="/icons/icon-192x192.png"
+  />
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/atom-one-light.min.css"
+  />
+  <link rel="stylesheet" href="/index.css">
+  <!-- <script
+    data-ad-client="ca-pub-1196485898698315"
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+  ></script> -->
+</head>
+
+  <body>
+    <header class="header">
+  <a class="logo" href="/">
+    <img
+      class="logo-img"
+      src="https://avatars.githubusercontent.com/u/18013127?v=4"
+    />
+  </a>
+
+  <div class="right">
+    <div class="color" id="color"></div>
+  </div>
+</header>
+
+    <main class=""><article class="container article">
+    
+      <div class="article-cover">
+        <img decoding="async" loading="lazy" src="./images/about-neumorphism/cover.jpg" alt="cover" />
+      </div>
+    
+
+    <h1 class="article-title">关于新拟物设计 Neumorphism</h1>
+ 
+    <p class="article-meta">
+      <span class="article-meta-item">
+        最后更新&#58;&nbsp;<time
+          class="post-time"
+          datetime="2022-08-29"
+          >2022-08-29</time
+        >
+      </span>
+      <span class="article-meta-item"
+        >阅读时间&#58;&nbsp;4
+        min</span
+      >
+      <a
+        class="license-link article-meta-item"
+        rel="license"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans"
+      >
+        <img
+          class="license-img"
+          alt="知识共享许可协议"
+          src="https://img.shields.io/badge/license-BY--NC--SA%204.0-green"
+        />
+      </a>
+    </p>
+  </section>
+
+
+
+  <section class=""><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间发现了一种叫新拟物的 UI 设计 Neumorphism，感觉很新鲜。于是研究的一番，本文将分享新拟物设计的相关知识。</p>
+<h2 id="新拟物设计是什么"><a href="#新拟物设计是什么" class="headerlink" title="新拟物设计是什么"></a>新拟物设计是什么</h2><p>新拟物的前身是 Skeuomorphism（拟物设计），或叫拟物化，即在界面中模仿现实物纹理材质的设计，让人们在使用界面时联想到现实物体的使用方式，由 Apple 公司最先提出。新拟物设计是拟物设计的一种新的思路，它的关注点不在于对现实世界和数字世界的对比和模拟，而关键点在于色调，新拟物设计关注于整个屏幕的颜色，并为用户提供一个完全独特的体验。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/224563/1632382960768-60883e1d-baf9-4b1d-8399-692ff97e0160.jpeg#clientId=u1367e7e7-fd10-4&from=drop&height=576&id=u91b021b0&margin=%5Bobject%20Object%5D&name=demo2.jpg&originHeight=768&originWidth=1024&originalType=binary&ratio=1&size=24984&status=done&style=none&taskId=u448e82e3-db87-4c4d-a7fd-4072e61fdf2&width=768" alt="demo2.jpg"></p>
+<p>比如你有一个音乐播放器界面，使用新拟物设计，这个界面的 UI 元素不是放置在背景之上而是在它后面。它给人的感觉是，像按钮或卡片这样的组件实际上是在背景里面的，只是因为它们是从里面突出来的，所以才可以看到。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/224563/1632388644117-04d5f235-305b-4d72-bab6-49035aff4ffd.jpeg#clientId=u1367e7e7-fd10-4&from=drop&height=355&id=ub948e55c&margin=%5Bobject%20Object%5D&name=uisdc-nw-20200630-8.jpeg&originHeight=473&originWidth=1080&originalType=binary&ratio=1&size=21040&status=done&style=none&taskId=u76805d77-8cad-4d4a-b68e-93330f2959b&width=810" alt="uisdc-nw-20200630-8.jpeg"></p>
+<p>新拟物设计风格的结构由背景色+高光色+阴影色组成，掌握了基本规律，就可以通过改变按钮、卡片的参数进行调整变换。总体来说就是纯色、低对比度以及适当的阴影效果，风格偏柔和。</p>
+<h2 id="新拟物设计的对比"><a href="#新拟物设计的对比" class="headerlink" title="新拟物设计的对比"></a>新拟物设计的对比</h2><p>新拟物设计是一种介于拟物与扁平之间的风格，简化了拟物设计中不必要的效果。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/webp/224563/1632399579940-c7675001-8a98-4780-bf52-ffc42e7bec36.webp#clientId=u1367e7e7-fd10-4&from=drop&id=uac60eaac&margin=%5Bobject%20Object%5D&name=neumorphism-skeuomorphism-flat-compared.png.webp&originHeight=540&originWidth=750&originalType=binary&ratio=1&size=15784&status=done&style=none&taskId=u88c7f09f-3c5d-4319-93f5-c8b703862a7" alt="neumorphism-skeuomorphism-flat-compared.png.webp"></p>
+<h2 id="谁在使用新拟物设计"><a href="#谁在使用新拟物设计" class="headerlink" title="谁在使用新拟物设计"></a>谁在使用新拟物设计</h2><p>几个使用了新拟物设计的应用</p>
+<h3 id="谜底时钟"><a href="#谜底时钟" class="headerlink" title="谜底时钟"></a>谜底时钟</h3><img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632385174572-06b0d5de-34f2-4060-aa6f-da1146305295.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=ua27c5db6&margin=%5Bobject%20Object%5D&name=sz1.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=592151&status=done&style=none&taskId=u424bbb22-660a-451a-8609-6591f960ae1&width=207" width="207" alt="sz1" style="display: inline;" />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632385174740-b0e616bc-0b44-47e0-8150-eeb3eaeda95a.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=uaca893b8&margin=%5Bobject%20Object%5D&name=sz2.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=617381&status=done&style=none&taskId=u744b5a24-26c7-4520-b44a-89699644b5f&width=207" width="207" alt="sz2" style="display: inline;" />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632385175228-edf5a9b0-b1d3-4aec-8a00-ac2f819d607c.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=ub41efc40&margin=%5Bobject%20Object%5D&name=sz3.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=753103&status=done&style=none&taskId=ue934bac5-0315-452a-8351-cdef86b52d0&width=207" width="207" alt="sz3" style="display: inline;"  />
+
+<h3 id="氢时钟"><a href="#氢时钟" class="headerlink" title="氢时钟"></a>氢时钟</h3><img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632385427631-e4ad535e-6c91-418e-a0de-3b4c80c64f01.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=u92f0b98c&margin=%5Bobject%20Object%5D&name=qsz2.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=200280&status=done&style=none&taskId=uadeaad65-d0d8-4a86-b985-2016c3c2bfd&width=207" width="207" alt="qsz2" style="display: inline;"  />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632385428125-35445106-6432-4c6f-9daa-41b6b2d94c88.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=udd5347fc&margin=%5Bobject%20Object%5D&name=qsz1.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=362349&status=done&style=none&taskId=u1ff2c507-b4a7-4d74-b403-6865146ef6b&width=207" width="207" alt="qsz2" style="display: inline;" />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632385427974-46531ea0-fac9-4c12-8eaa-e3c5f390802d.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=u1eede575&margin=%5Bobject%20Object%5D&name=qsz3.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=278593&status=done&style=none&taskId=ucf3c2510-3113-4d5e-b549-d42f76fc112&width=207" width="207" alt="qsz2" style="display: inline;"  />
+
+<h3 id="Skailer"><a href="#Skailer" class="headerlink" title="Skailer"></a>Skailer</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632386230218-c6af1253-29da-4fa5-9dab-0294a793c5da.png#clientId=u1367e7e7-fd10-4&from=drop&height=480&id=u23661ea3&margin=%5Bobject%20Object%5D&name=GitHubPreview.png&originHeight=640&originWidth=1280&originalType=binary&ratio=1&size=271916&status=done&style=none&taskId=u5ae4011c-97ef-45ff-9490-8bf34c71396&width=960" alt="GitHubPreview.png"></p>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632386236813-a2266689-7519-411f-bcb1-b2ac64f39094.png#clientId=u1367e7e7-fd10-4&from=drop&height=368&id=ue22be91a&margin=%5Bobject%20Object%5D&name=home-dark.png&originHeight=1471&originWidth=728&originalType=binary&ratio=1&size=654058&status=done&style=none&taskId=u53575269-775b-4772-af60-c9805c661c7&width=280" width="280" alt="home-dark" style="display: inline;"  />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632386402468-ca59fff3-8281-44e6-95d0-c8107d70a162.png#clientId=u1367e7e7-fd10-4&from=drop&height=368&id=u34eb43a2&margin=%5Bobject%20Object%5D&name=player-dark.png&originHeight=1471&originWidth=728&originalType=binary&ratio=1&size=413125&status=done&style=none&taskId=uee5a8ab6-33d2-4c64-b48b-3ebda28a521&width=280" width="280" alt="player-dark" style="display: inline;"  />
+
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632386243666-265748d2-dced-45d3-b717-8755406fd7eb.png#clientId=u1367e7e7-fd10-4&from=drop&height=368&id=ue77170b3&margin=%5Bobject%20Object%5D&name=player-light.png&originHeight=1471&originWidth=728&originalType=binary&ratio=1&size=416886&status=done&style=none&taskId=ucfefa3fe-03cf-4be8-ace6-e8bdaf80e35&width=280" width="280" alt="player-light" style="display: inline;"  />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632386367876-94a5ad15-e83d-4202-99fb-b0707f650ed5.png#clientId=u1367e7e7-fd10-4&from=drop&height=368&id=u025b79d4&margin=%5Bobject%20Object%5D&name=home-light.png&originHeight=1471&originWidth=728&originalType=binary&ratio=1&size=624767&status=done&style=none&taskId=ub8e92b29-85d8-482a-ab93-1de212bd7e0&width=280" width="280" alt="home-light" style="display: inline;"  />
+
+<h3 id="分贝大师"><a href="#分贝大师" class="headerlink" title="分贝大师"></a>分贝大师</h3><img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632392472721-5509c234-a267-4803-b4b2-618b4dd4427a.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=u45f40f01&margin=%5Bobject%20Object%5D&name=fb1.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=1579559&status=done&style=none&taskId=uc64fcc11-5489-425c-a17c-4dd1d31769e&width=280" width="280" alt="fb1" style="display: inline;"  />
+<img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1632392471542-c71816ae-f2c6-416f-afdd-6afd05bc53ad.png#clientId=u1367e7e7-fd10-4&from=drop&height=448&id=u3f2cb4e3&margin=%5Bobject%20Object%5D&name=fb2.PNG&originHeight=1792&originWidth=828&originalType=binary&ratio=1&size=1100292&status=done&style=none&taskId=u8bf60d82-b3ba-4e16-bf6b-a9bac5c4bcb&width=280" width="280" alt="fb2" style="display: inline;"  />
+
+<h2 id="新拟物设计的实现原理"><a href="#新拟物设计的实现原理" class="headerlink" title="新拟物设计的实现原理"></a>新拟物设计的实现原理</h2><p>新拟物设计通过应用两种不同的阴影实现，一个高亮色，一个阴影色，元素的背景颜色不能是全黑或全白，需要使用一种中间色调，这样可以使阴影效果显示出来。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/224563/1632297595384-901c5b03-0989-41c4-bbd0-ca86b69e4e29.jpeg#clientId=ucfb7b09a-b6b6-4&from=drop&id=u307e838c&margin=%5Bobject%20Object%5D&name=neumorphic-cards.png.jpg&originHeight=550&originWidth=750&originalType=binary&ratio=1&size=9135&status=done&style=stroke&taskId=u1f11aa03-5f63-4a9b-9e2d-bb9d3eb2b4b" alt="neumorphic-cards.png.jpg"><br><img src="https://cdn.nlark.com/yuque/0/2021/webp/224563/1632388456859-a92a1671-7078-491d-848a-6dc90cd4b904.webp#clientId=u1367e7e7-fd10-4&from=drop&height=600&id=ue1a03760&margin=%5Bobject%20Object%5D&name=6c9cb8deabc71b3bb158f6ab7ca653ff.webp&originHeight=1200&originWidth=1600&originalType=binary&ratio=1&size=106980&status=done&style=none&taskId=u2eb6c82e-d90d-4ad7-b45a-dea8aa4925b&width=800" alt="6c9cb8deabc71b3bb158f6ab7ca653ff.webp"><br><img src="https://cdn.nlark.com/yuque/0/2021/webp/224563/1632388464181-5cc9a4b4-1bdb-4add-b78a-df6f632665c7.webp#clientId=u1367e7e7-fd10-4&from=drop&height=600&id=u7d653031&margin=%5Bobject%20Object%5D&name=f9f1ad497f9778d196bae05e8122efb7.webp&originHeight=1200&originWidth=1600&originalType=binary&ratio=1&size=119266&status=done&style=none&taskId=u0605aa3d-120a-4fda-aa0b-d90dcb8ef15&width=800" alt="f9f1ad497f9778d196bae05e8122efb7.webp"></p>
+<h2 id="使用-Flutter-实现新拟物设计"><a href="#使用-Flutter-实现新拟物设计" class="headerlink" title="使用 Flutter 实现新拟物设计"></a>使用 Flutter 实现新拟物设计</h2><p>对于开发来说，要实现这种效果，就是使用两层阴影，一层高亮阴影，一层暗色阴影，以及设置元素的背景颜色。凸的时候高亮影在左上，暗色在右下，凹时反过来。以下介绍如何使用 Flutter 框架实现这种效果，Web 端使用相同的原理实现。</p>
+<ol>
+<li>首先添加一个容器，用来放置具体的元素，设置背景颜色</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Container</span>(</span><br><span class="line">  <span class="selector-tag">width</span>: 600<span class="selector-class">.0</span>,</span><br><span class="line">  <span class="selector-tag">height</span>: 600<span class="selector-class">.0</span>,</span><br><span class="line">  <span class="selector-tag">color</span>: <span class="selector-tag">Color</span>(0<span class="selector-tag">xffefeeee</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<ol start="2">
+<li>添加子元素，设置它的背景颜色以及阴影色和高亮色</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">child</span>: <span class="selector-tag">Container</span>(</span><br><span class="line">  <span class="selector-tag">width</span>: 200,</span><br><span class="line">  <span class="selector-tag">height</span>: 200,</span><br><span class="line">  <span class="selector-tag">decoration</span>: <span class="selector-tag">BoxDecoration</span>(</span><br><span class="line">    // 背景色</span><br><span class="line">    <span class="selector-tag">color</span>: <span class="selector-tag">Color</span>(0<span class="selector-tag">xffefeeee</span>),</span><br><span class="line">    <span class="selector-tag">borderRadius</span>: <span class="selector-tag">BorderRadius</span><span class="selector-class">.circular</span>(12<span class="selector-class">.0</span>),</span><br><span class="line">		boxShadow: const [</span><br><span class="line">      // 高亮色</span><br><span class="line">			<span class="selector-tag">BoxShadow</span>(</span><br><span class="line">				<span class="selector-tag">color</span>: <span class="selector-tag">Colors</span><span class="selector-class">.white</span><span class="selector-class">.withOpacity</span>(<span class="selector-class">.5</span>),</span><br><span class="line">				<span class="selector-tag">offset</span>: <span class="selector-tag">Offset</span>(10<span class="selector-class">.0</span>, 10<span class="selector-class">.0</span>),</span><br><span class="line">				<span class="selector-tag">blurRadius</span>: 4<span class="selector-class">.0</span>,</span><br><span class="line">			),</span><br><span class="line">      // 阴影色</span><br><span class="line">			<span class="selector-tag">BoxShadow</span>(</span><br><span class="line">				<span class="selector-tag">color</span>: <span class="selector-tag">Color</span>(0<span class="selector-tag">xffd1cdc7</span>)<span class="selector-class">.withOpacity</span>(<span class="selector-class">.5</span>),</span><br><span class="line">				<span class="selector-tag">offset</span>: <span class="selector-tag">Offset</span>(<span class="selector-tag">-10</span><span class="selector-class">.0</span>, <span class="selector-tag">-10</span><span class="selector-class">.0</span>),</span><br><span class="line">				<span class="selector-tag">blurRadius</span>: 4<span class="selector-class">.0</span>,</span><br><span class="line">			),</span><br><span class="line">		],</span><br><span class="line">	),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>给子元素添加圆角和边框配置</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">decoration</span>: <span class="selector-tag">BoxDecoration</span>(</span><br><span class="line">  // ...</span><br><span class="line">  <span class="selector-tag">borderRadius</span>: <span class="selector-tag">BorderRadius</span><span class="selector-class">.circular</span>(12<span class="selector-class">.0</span>),</span><br><span class="line">  <span class="selector-tag">border</span>: <span class="selector-tag">Border</span><span class="selector-class">.all</span>(</span><br><span class="line">    <span class="selector-tag">color</span>: <span class="selector-tag">Colors</span><span class="selector-class">.white</span><span class="selector-class">.withOpacity</span>(<span class="selector-class">.2</span>),</span><br><span class="line">  ),</span><br><span class="line">  // ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>最终效果</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/224563/1632389119671-3ae397cb-0ff1-4c0c-8fc2-b8cfce12e90c.jpeg#clientId=u1367e7e7-fd10-4&from=drop&id=ue971c282&margin=%5Bobject%20Object%5D&name=Xnip2021-09-23_17-24-55.jpg&originHeight=500&originWidth=800&originalType=binary&ratio=1&size=19917&status=done&style=none&taskId=u61bd0d22-f78d-4f6d-8878-638e4a56afd" alt="Xnip2021-09-23_17-24-55.jpg"></p>
+<p>这里可以使用一个便捷工具生成代码，以产生不同的效果</p>
+<p><a href="https://neumorphism.coldstone.fun" target="_blank" rel="noopener">https://neumorphism.coldstone.fun</a></p>
+<p>对于 Web 可以使用另一个工具</p>
+<p><a href="https://neumorphism.io" target="_blank" rel="noopener">https://neumorphism.io</a><br>​</p>
+<h2 id="优点与缺点"><a href="#优点与缺点" class="headerlink" title="优点与缺点"></a>优点与缺点</h2><p>主要优点在于这种效果给予用户带来的新鲜感，同时它可以与其他风格混合使用。</p>
+<p>它的缺点在于</p>
+<ol>
+<li>层次结构弱</li>
+</ol>
+<p>界面上缺少信息层级关系，会对用户的决策过程及思考过程产生重大影响。如存在多个可操作的内容，但是重点不突出，这会让用户在当前的流程上产生困惑，从而可能导致错误的判断和误操作，好的 UI/UX 不需要让用户思考。</p>
+<ol start="2">
+<li>对比度低，可辨识性较差</li>
+</ol>
+<p>新拟物仅通过柔和的阴影来区分元素，缺少对比度，因此对视力低下、失明、色盲的用户来说，可辨识性较差，不太友好。</p>
+<ol start="3">
+<li>增加开发难度</li>
+</ol>
+<p>这个风格的实现是对元素增加两个不同方向的投影，通过代码可以实现，但是需要对每个元素添加投影，加大工作量。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>新拟物设计诞生于拟物设计，它只是一种设计风格，使用场景受限，现实设计中还需要谨慎使用，可以逐渐的应用在细小的元素上。但是任然值得去尝试。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6" target="_blank" rel="noopener">Neumorphism in user interfaces</a><br><a href="https://www.justinmind.com/blog/neumorphism-ui/" target="_blank" rel="noopener">Neumorphism: why it’s all the hype in UI design</a><br><a href="https://tonyowen.medium.com/neumorphism-in-flutter-f46fe25bf9d4" target="_blank" rel="noopener">Neumorphism in Flutter</a>​<br><a href="https://www.zcool.com.cn/article/ZMTEwNzMwMA==.html" target="_blank" rel="noopener">新拟物风格，UI设计的新趋势还是昙花一现？</a><br><a href="https://www.uisdc.com/neumorphism-design-trends" target="_blank" rel="noopener">完整梳理！上半年最热门的新拟物设计趋势是如何演变的？</a>​</p></section>
+
+    <a class="coffee-link" href="https://dun.mianbaoduo.com/@coldstone" target="_blank">
+      <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;" >
+    </a>
+
+  <section class="article-more">
+    
+    <a
+      class=""
+      href="/post/2022/03/22/flutter-tree-2/"
+      title="开源小事一则"
+    >
+      &larr;&nbsp;开源小事一则
+    </a>
+     
+    <a
+      class=""
+      href="/post/2021/07/29/react-context-hooks/"
+      title="使用 Context 避免深层属性传递"
+    >
+      使用 Context 避免深层属性传递&nbsp;&rarr;
+    </a>
+    
+  </section>
+
+
+</article></main>
+    <footer class="footer">
+  <ul class="sns-list">
+    <li>
+      <span>友链：</span>
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://www.thosefree.com" target="_blank"
+        >那些免费的砖</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        href="https://colmugx.github.io/blog"
+        target="_blank"
+        >colmugx</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://kalasearch.cn/blog" target="_blank"
+        >卡拉搜索</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://blog.inmind.ltd" target="_blank"
+        >Mind's blog</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://oldchen.top" target="_blank"
+        >老晨子</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://www.v2fy.com" target="_blank"
+        >猫爪导航🐱</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://wxsm.space" target="_blank"
+        >wxsm's space</a
+      >
+    </li>
+  </ul>
+
+  <ul class="sns-list">
+    <li>
+      <span>作品：</span>
+    </li>
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        href="https://neumorphism.coldstone.fun"
+        target="_blank"
+        >neumorphism</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="pub.dev/packages/tcard" target="_blank"
+        >tcard</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        href="https://github.com/xrr2016/hexo-theme-cold-stone"
+        target="_blank"
+        >hexo-theme-cold-stone</a
+      >
+    </li>
+  </ul>
+
+  <ul class="sns-list">
+    <li>
+      <span>联系：</span>
+    </li>
+    
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://github.com/xrr2016"
+        >Github</a
+      >
+    </li>
+     
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://juejin.im/user/576666b7207703006b1e0f09"
+        >掘金</a
+      >
+    </li>
+     
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://zhihu.com/people/needforchange/posts"
+        >知乎</a
+      >
+    </li>
+     
+    <li>
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://leetcode-cn.com/u/coldstone"
+        >力扣</a
+      >
+    </li>
+    
+  </ul>
+  <ul class="sns-list">
+    <li>
+      <span>数据：</span>
+    </li>
+    <li class="sns-list-item">
+      <p class="">
+        共计&#58; 65 篇
+      </p>
+    </li>
+    <li class="sns-list-item">
+      <p class="">
+        <span class=""
+          >总字数&#58; 67.1k</span
+        >
+      </p>
+    </li>
+    <li class="sns-list-item">
+      <a class="rss-link" href="/atom.xml">
+        <svg
+          class=""
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z"
+          />
+        </svg>
+      </a>
+    </li>
+  </ul>
+</footer>
+
+    <!--
+ Copyright (c) 2021 Cold Stone
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
+<script src="/index.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=UA-119658292-2"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+
+  gtag('config', 'UA-119658292-2')
+</script>
+
+  </body>
+</html>

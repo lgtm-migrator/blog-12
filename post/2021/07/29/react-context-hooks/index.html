@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="google" content="notranslate" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keyword" content="冷石, 前端, 面试，Web, Js, CSS, Node.js, Frontend, Flutter, Docker, Dart, Mysql, Egg.js" />
+  <meta name="description" content="孑然一身，傲立于世" />
+  <title>冷石的博客</title>
+  <base href="/" />
+  <link rel="preconnect" href="//cdn.jsdelivr.net" />
+  <link rel="shortcut icon" href="/icons/icon-72x72.png" />
+  <link
+    rel="apple-touch-icon"
+    href="/icons/icon-192x192.png"
+  />
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/atom-one-light.min.css"
+  />
+  <link rel="stylesheet" href="/index.css">
+  <!-- <script
+    data-ad-client="ca-pub-1196485898698315"
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+  ></script> -->
+</head>
+
+  <body>
+    <header class="header">
+  <a class="logo" href="/">
+    <img
+      class="logo-img"
+      src="https://avatars.githubusercontent.com/u/18013127?v=4"
+    />
+  </a>
+
+  <div class="right">
+    <div class="color" id="color"></div>
+  </div>
+</header>
+
+    <main class=""><article class="container article">
+    
+      <div class="article-cover">
+        <img decoding="async" loading="lazy" src="./images/react-context-hooks/cover.jpg" alt="cover" />
+      </div>
+    
+
+    <h1 class="article-title">使用 Context 避免深层属性传递</h1>
+ 
+    <p class="article-meta">
+      <span class="article-meta-item">
+        最后更新&#58;&nbsp;<time
+          class="post-time"
+          datetime="2022-08-29"
+          >2022-08-29</time
+        >
+      </span>
+      <span class="article-meta-item"
+        >阅读时间&#58;&nbsp;4
+        min</span
+      >
+      <a
+        class="license-link article-meta-item"
+        rel="license"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans"
+      >
+        <img
+          class="license-img"
+          alt="知识共享许可协议"
+          src="https://img.shields.io/badge/license-BY--NC--SA%204.0-green"
+        />
+      </a>
+    </p>
+  </section>
+
+
+
+  <section class=""><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在项目发现了一些看起来很神奇的代码，一个组件 A 的方法通过 <code>props</code> 传到组件 B，然后到组件 C，再到组件 D，再到组件 E，最后到组件 D， 简直是千层饼😂。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/224563/1626696227396-bbd9e497-7d36-4100-8896-e97a0c36c2b0.jpeg#align=left&display=inline&height=525&margin=%5Bobject%20Object%5D&name=Xnip2021-07-19_20-03-31.jpg&originHeight=700&originWidth=700&size=428514&status=done&style=none&width=525" alt="Xnip2021-07-19_20-03-31.jpg"></p>
+<p>提问一番后知道了这种将属性深层传递的现象叫 <code>Prop Drilling</code>，本文说明如何使用 React 的 Context API 避免这种现象。</p>
+<h2 id="什么是-Context"><a href="#什么是-Context" class="headerlink" title="什么是 Context"></a>什么是 Context</h2><blockquote>
+<p>Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。</p>
+<p>在一个典型的 React 应用中，数据是通过 props 属性自上而下（由父及子）进行传递的，但此种用法对于某些类型的属性而言是极其繁琐的（例如：地区偏好，UI 主题），这些属性是应用程序中许多组件都需要的。Context 提供了一种在组件之间共享此类值的方式，而不必显式地通过组件树的逐层传递 props。</p>
+</blockquote>
+<p>Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。这些组件共享的以及变化不频繁的数据正是 Context 用武之地。</p>
+<h2 id="如何使用-Context"><a href="#如何使用-Context" class="headerlink" title="如何使用 Context"></a>如何使用 Context</h2><p>举个例子🌰 说明<br><img src="https://cdn.nlark.com/yuque/0/2021/png/224563/1627528553612-12e4c6b6-ae4a-49c1-b9bc-8405d438f794.png#align=left&display=inline&height=667&margin=%5Bobject%20Object%5D&name=react-context-hooks.vercel.app_%28iPhone%206_7_8%29.png&originHeight=1334&originWidth=750&size=49942&status=done&style=none&width=375" alt="react-context-hooks.vercel.app_(iPhone 6_7_8).png"><br><a href="https://react-context-hooks.vercel.app/" target="_blank" rel="noopener">在线示例</a><br><a href="https://github.com/xrr2016/react-context-hooks" target="_blank" rel="noopener">本文代码</a></p>
+<h3 id="创建-Context"><a href="#创建-Context" class="headerlink" title="创建 Context"></a>创建 Context</h3><p>首先用 <code>React.createContext</code> 方法创建一个 <code>AuthContext</code>，表示当前应用的认证状态，创建时可以传入默认值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AuthContext.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> AuthContext = React.createContext(&#123;</span><br><span class="line">  user: <span class="literal">null</span>,</span><br><span class="line">  isAuthenticated: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>然后创建 <code>AuthContextProvider</code> 组件，在组件中初始化状态，定义改变状态的方法，将这些数据和方法传递给 <code>Context.Provider</code> 的 <code>value</code> 属性 ，<code>value</code> 可以接收数据和方法，最后在组件中渲染子组件  <code>children</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AuthContext.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthContextProvider</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    user: <span class="literal">null</span>,</span><br><span class="line">    isAuthenticated: <span class="literal">false</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  login = <span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  logout = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;AuthContext.Provider value=&#123;(<span class="keyword">this</span>.state, <span class="keyword">this</span>.login, <span class="keyword">this</span>.logout)&#125;&gt;</span><br><span class="line">        &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">      &lt;<span class="regexp">/AuthContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="使用-Context"><a href="#使用-Context" class="headerlink" title="使用 Context"></a>使用 Context</h3><p>有多种方式获得 Context 中的数据</p>
+<ol>
+<li>使用  <code>Context.Comsumer</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AppHeader.js</span></span><br><span class="line"></span><br><span class="line">&lt;AuthContext.Consumer&gt;</span><br><span class="line">  &#123;(authContext) =&gt; (</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    &lt;<span class="regexp">/header&gt;</span></span><br><span class="line"><span class="regexp">  )&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>AuthContext.Consumer&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用组件的 <code>ContextType</code> 属性</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AppFooterButtons.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppFooterButtons</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> contextType = AuthContext</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.login&#125;&gt;Login&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.context.logout&#125;&gt;Logout&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用 <code>useContext</code></li>
+</ol>
+<p>对于函数式组件可以使用 <code>useContext</code> 方法获取状态数据，可以同时获取多个状态。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AppBody.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> AppBoy = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> authContext = useContext(AuthContext)</span><br><span class="line">  <span class="keyword">const</span> &#123; languages, current, changeLanguage &#125; = useContext(LanguageContext)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;</span><br><span class="line">        Hello, &#123;authContext.isAuthenticated ? authContext.user.name : <span class="string">'World'</span>&#125;</span><br><span class="line">      &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="修改-Context"><a href="#修改-Context" class="headerlink" title="修改 Context"></a>修改 Context</h3><ol>
+<li>对于 class 组件，使用 <code>setState</code> 方法更新组件的 <code>state</code>。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AuthContext.js </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthContextProvider</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  login = <span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.isAuthenticated) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      user,</span><br><span class="line">      isAuthenticated: <span class="literal">true</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  logout = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      user: <span class="literal">null</span>,</span><br><span class="line">      isAuthenticated: <span class="literal">false</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>函数式组件使用 <code>useState</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LanguageContext.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> LanguageContextProvider = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> [current, setCurrent] = useState(<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> changeLanguage = <span class="function">(<span class="params">val</span>) =&gt;</span> &#123;</span><br><span class="line">    setCurrent(val)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终使用 Context 将应用中通用状态统一管理，无需再层层传递属性。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>本文说明什么是 Context，以及使用 Context 的多种方式。使用 Context 可以有效的避免 <code>Prop Drilling</code> 现象，将需要深层传递的属性和方法提取出来，达到共用的目的。应用 <code>Context</code> 的最佳时机是应用的一些全局性，不会频繁变化的数据。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p><a href="https://zh-hans.reactjs.org/docs/context.html#before-you-use-context" target="_blank" rel="noopener">使用 Context 之前的考虑</a></p>
+<blockquote>
+<p>Context 主要应用场景在于_很多_不同层级的组件需要访问同样一些的数据。请谨慎使用，因为这会使得组件的复用性变差。</p>
+</blockquote>
+<blockquote>
+<p><strong>如果你只是想避免层层传递一些属性，<a href="https://zh-hans.reactjs.org/docs/composition-vs-inheritance.html" target="_blank" rel="noopener">组件组合（component composition）</a>有时候是一个比 context 更好的解决方案。</strong></p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://medium.com/swlh/avoid-prop-drilling-with-react-context-a00392ee3d8" target="_blank" rel="noopener">Avoid Prop Drilling with React Context</a><br><a href="https://kentcdodds.com/blog/prop-drilling" target="_blank" rel="noopener">Prop Drilling</a><br><a href="https://zh-hans.reactjs.org/docs/context.html#dynamic-context" target="_blank" rel="noopener">Context</a></p></section>
+
+    <a class="coffee-link" href="https://dun.mianbaoduo.com/@coldstone" target="_blank">
+      <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;" >
+    </a>
+
+  <section class="article-more">
+    
+    <a
+      class=""
+      href="/post/2021/09/23/about-neumorphism/"
+      title="关于新拟物设计 Neumorphism"
+    >
+      &larr;&nbsp;关于新拟物设计 Neumorphism
+    </a>
+     
+    <a
+      class=""
+      href="/post/2021/04/26/learn-ast/"
+      title="学习抽象语法树 AST"
+    >
+      学习抽象语法树 AST&nbsp;&rarr;
+    </a>
+    
+  </section>
+
+
+</article></main>
+    <footer class="footer">
+  <ul class="sns-list">
+    <li>
+      <span>友链：</span>
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://www.thosefree.com" target="_blank"
+        >那些免费的砖</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        href="https://colmugx.github.io/blog"
+        target="_blank"
+        >colmugx</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://kalasearch.cn/blog" target="_blank"
+        >卡拉搜索</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://blog.inmind.ltd" target="_blank"
+        >Mind's blog</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://oldchen.top" target="_blank"
+        >老晨子</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://www.v2fy.com" target="_blank"
+        >猫爪导航🐱</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="https://wxsm.space" target="_blank"
+        >wxsm's space</a
+      >
+    </li>
+  </ul>
+
+  <ul class="sns-list">
+    <li>
+      <span>作品：</span>
+    </li>
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        href="https://neumorphism.coldstone.fun"
+        target="_blank"
+        >neumorphism</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a class="sns-list-link" href="pub.dev/packages/tcard" target="_blank"
+        >tcard</a
+      >
+    </li>
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        href="https://github.com/xrr2016/hexo-theme-cold-stone"
+        target="_blank"
+        >hexo-theme-cold-stone</a
+      >
+    </li>
+  </ul>
+
+  <ul class="sns-list">
+    <li>
+      <span>联系：</span>
+    </li>
+    
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://github.com/xrr2016"
+        >Github</a
+      >
+    </li>
+     
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://juejin.im/user/576666b7207703006b1e0f09"
+        >掘金</a
+      >
+    </li>
+     
+    <li class="sns-list-item">
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://zhihu.com/people/needforchange/posts"
+        >知乎</a
+      >
+    </li>
+     
+    <li>
+      <a
+        class="sns-list-link"
+        target="_blank"
+        rel="noopener"
+        href="https://leetcode-cn.com/u/coldstone"
+        >力扣</a
+      >
+    </li>
+    
+  </ul>
+  <ul class="sns-list">
+    <li>
+      <span>数据：</span>
+    </li>
+    <li class="sns-list-item">
+      <p class="">
+        共计&#58; 65 篇
+      </p>
+    </li>
+    <li class="sns-list-item">
+      <p class="">
+        <span class=""
+          >总字数&#58; 67.1k</span
+        >
+      </p>
+    </li>
+    <li class="sns-list-item">
+      <a class="rss-link" href="/atom.xml">
+        <svg
+          class=""
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z"
+          />
+        </svg>
+      </a>
+    </li>
+  </ul>
+</footer>
+
+    <!--
+ Copyright (c) 2021 Cold Stone
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
+<script src="/index.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=UA-119658292-2"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+
+  gtag('config', 'UA-119658292-2')
+</script>
+
+  </body>
+</html>
